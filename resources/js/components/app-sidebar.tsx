@@ -2,7 +2,19 @@ import { useState } from 'react';
 import { SidebarContent } from './sidebar-content';
 
 export function AppSidebar() {
-    const [isCollapsed, setIsCollapsed] = useState(false);
+    const [isCollapsed, setIsCollapsed] = useState(() => {
+        if (typeof window !== 'undefined') {
+            const saved = localStorage.getItem('sidebarCollapsed');
+            return saved === 'true';
+        }
+        return false;
+    });
+
+    const toggleCollapse = () => {
+        const newState = !isCollapsed;
+        setIsCollapsed(newState);
+        localStorage.setItem('sidebarCollapsed', String(newState));
+    };
 
     return (
         <aside
@@ -10,7 +22,7 @@ export function AppSidebar() {
         >
             <SidebarContent
                 isCollapsed={isCollapsed}
-                onToggleCollapse={() => setIsCollapsed(!isCollapsed)}
+                onToggleCollapse={toggleCollapse}
             />
         </aside>
     );
