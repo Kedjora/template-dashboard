@@ -79,21 +79,21 @@ export default function Dashboard() {
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
             <Head title="Dashboard" />
-            <div className="bg-white rounded-3xl p-8 shadow-sm border border-gray-100 min-h-[600px]">
+            <div className="min-h-[600px] rounded-3xl border border-gray-100 bg-white p-4 shadow-sm lg:p-8">
                 {/* Header Section */}
-                <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 gap-4">
+                <div className="mb-8 flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-center">
                     <div>
-                        <h2 className="text-xl font-bold text-gray-800 flex items-center gap-2">
+                        <h2 className="flex items-center gap-2 text-xl font-bold text-gray-800">
                             <UsersIcon size={24} className="text-gray-600" />
                             {users.length} Total Users
                         </h2>
-                        <p className="text-gray-500 text-sm mt-1">
+                        <p className="mt-1 text-sm text-gray-500">
                             View and Edit User Role here.
                         </p>
                     </div>
 
-                    <div>
-                        <button className="flex items-center gap-2 px-6 py-3 bg-blue-600 text-white font-bold text-sm rounded-full hover:bg-blue-700 transition-colors shadow-lg shadow-blue-200">
+                    <div className="w-full sm:w-auto">
+                        <button className="flex w-full items-center justify-center gap-2 rounded-full bg-blue-600 px-6 py-3 text-sm font-bold text-white shadow-lg shadow-blue-200 transition-colors hover:bg-blue-700 sm:w-auto">
                             <span>Add New</span>
                             <Plus size={18} strokeWidth={3} />
                         </button>
@@ -101,7 +101,7 @@ export default function Dashboard() {
                 </div>
 
                 {/* List Header */}
-                <div className="mb-6 hidden md:block">
+                <div className="mb-6 hidden lg:block">
                     <h3 className="text-lg font-bold text-gray-800">
                         All Users
                     </h3>
@@ -112,20 +112,20 @@ export default function Dashboard() {
                     {users.map((user) => (
                         <div
                             key={user.id}
-                            className="group flex flex-col md:flex-row items-center p-4 rounded-2xl hover:bg-gray-50 transition-all border border-transparent hover:border-gray-100"
+                            className="group flex flex-col items-start rounded-2xl border border-transparent p-4 transition-all hover:border-gray-100 hover:bg-gray-50 lg:flex-row lg:items-center"
                         >
                             {/* User Info - Approx 40% width */}
-                            <div className="flex items-center gap-4 w-full md:w-[40%]">
+                            <div className="flex w-full items-center gap-4 lg:w-[40%]">
                                 <img
                                     src={user.avatarUrl}
                                     alt={user.name}
-                                    className="w-14 h-14 rounded-full object-cover border-2 border-white shadow-md"
+                                    className="h-14 w-14 rounded-full border-2 border-white object-cover shadow-md"
                                 />
                                 <div>
-                                    <h4 className="font-bold text-gray-900 text-base">
+                                    <h4 className="text-base font-bold text-gray-900">
                                         {user.name}
                                     </h4>
-                                    <div className="flex items-center gap-2 text-gray-500 text-sm mt-0.5">
+                                    <div className="mt-0.5 flex items-center gap-2 text-sm text-gray-500">
                                         <svg
                                             width="14"
                                             height="14"
@@ -144,23 +144,23 @@ export default function Dashboard() {
                             </div>
 
                             {/* Role Section - Approx 35% width, Left Aligned */}
-                            <div className="w-full md:w-[35%] mt-4 md:mt-0 flex items-center justify-start gap-4">
-                                <div className="w-12 h-12 rounded-2xl bg-[#F4F6F9] flex items-center justify-center text-gray-500 group-hover:bg-white group-hover:shadow-sm transition-all shrink-0">
+                            <div className="mt-4 flex w-full items-center justify-start gap-4 lg:mt-0 lg:w-[35%]">
+                                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-[#F4F6F9] text-gray-500 transition-all group-hover:bg-white group-hover:shadow-sm">
                                     <UserIcon size={20} strokeWidth={2} />
                                 </div>
                                 <div className="flex flex-col">
-                                    <span className="text-xs text-gray-400 font-medium">
+                                    <span className="text-xs font-medium text-gray-400">
                                         User Role:
                                     </span>
-                                    <span className="text-gray-900 font-bold">
+                                    <span className="font-bold text-gray-900">
                                         {user.role}
                                     </span>
                                 </div>
                             </div>
 
                             {/* Action Button - Approx 25% width, Right Aligned */}
-                            <div className="w-full md:w-[25%] mt-4 md:mt-0 flex justify-end">
-                                <button className="bg-[#2D2D2D] text-white px-6 py-2.5 rounded-xl font-medium text-sm hover:bg-black transition-colors shadow-lg shadow-gray-200">
+                            <div className="mt-4 flex w-full justify-end lg:mt-0 lg:w-[25%]">
+                                <button className="w-full rounded-xl bg-[#2D2D2D] px-6 py-2.5 text-sm font-medium text-white shadow-lg shadow-gray-200 transition-colors hover:bg-black lg:w-auto">
                                     Edit Role
                                 </button>
                             </div>

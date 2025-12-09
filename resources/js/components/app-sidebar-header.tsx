@@ -1,8 +1,15 @@
+import { SidebarContent } from '@/components/sidebar-content';
+import {
+    Sheet,
+    SheetContent,
+    SheetTitle,
+    SheetTrigger,
+} from '@/components/ui/sheet';
 import { useInitials } from '@/hooks/use-initials';
 import { logout } from '@/routes';
 import { type SharedData } from '@/types';
 import { router, usePage } from '@inertiajs/react';
-import { Bell, Crown, LogOut, Search, User } from 'lucide-react';
+import { Bell, Crown, LogOut, Menu, Search, User } from 'lucide-react';
 
 export function AppSidebarHeader() {
     const { auth } = usePage<SharedData>().props;
@@ -14,27 +21,51 @@ export function AppSidebarHeader() {
     };
 
     return (
-        <header className="flex flex-col md:flex-row items-center gap-4 mb-8">
+        <header className="mb-8 flex flex-col items-center gap-4 md:flex-row">
             {/* Main Bar: Title + Actions wrapped in a long oval box */}
-            <div className="flex-1 w-full bg-white rounded-[2rem] pl-8 pr-4 py-3 flex items-center justify-between shadow-sm">
-                <h1 className="text-xl font-bold text-gray-800">User Roles</h1>
+            <div className="flex w-full flex-1 items-center justify-between rounded-[2rem] bg-white py-3 pr-4 pl-8 shadow-sm">
+                <div className="flex items-center gap-4">
+                    {/* Mobile Menu Trigger */}
+                    <Sheet>
+                        <SheetTrigger asChild>
+                            <button className="-ml-2 p-2 text-gray-500 hover:text-gray-900 md:hidden">
+                                <Menu size={24} />
+                            </button>
+                        </SheetTrigger>
+                        <SheetContent
+                            side="left"
+                            className="w-[300px] border-r-0 bg-transparent p-0 shadow-none"
+                        >
+                            <div className="h-full w-full overflow-hidden rounded-r-[50px] bg-white">
+                                <SheetTitle className="sr-only">
+                                    Navigation Menu
+                                </SheetTitle>
+                                <SidebarContent isMobile />
+                            </div>
+                        </SheetContent>
+                    </Sheet>
+
+                    <h1 className="text-xl font-bold text-gray-800">
+                        User Roles
+                    </h1>
+                </div>
 
                 <div className="flex items-center gap-3">
                     {/* Search Button - Light grey background to stand out on white */}
-                    <button className="w-11 h-11 flex items-center justify-center bg-[#F4F6F9] text-gray-500 hover:text-gray-900 rounded-full hover:shadow-md transition-all">
+                    <button className="flex h-11 w-11 items-center justify-center rounded-full bg-[#F4F6F9] text-gray-500 transition-all hover:text-gray-900 hover:shadow-md">
                         <Search size={20} />
                     </button>
 
                     {/* Notification Button */}
-                    <button className="w-11 h-11 flex items-center justify-center bg-[#F4F6F9] text-gray-500 hover:text-gray-900 rounded-full hover:shadow-md transition-all relative">
+                    <button className="relative flex h-11 w-11 items-center justify-center rounded-full bg-[#F4F6F9] text-gray-500 transition-all hover:text-gray-900 hover:shadow-md">
                         <Bell size={20} />
-                        <span className="absolute top-3 right-3 w-2 h-2 bg-red-500 rounded-full border border-white"></span>
+                        <span className="absolute top-3 right-3 h-2 w-2 rounded-full border border-white bg-red-500"></span>
                     </button>
 
                     {/* Pro Badge Button */}
-                    <button className="w-11 h-11 flex items-center justify-center bg-[#D2F558] text-gray-900 rounded-full hover:shadow-md transition-all relative group">
+                    <button className="group relative flex h-11 w-11 items-center justify-center rounded-full bg-[#D2F558] text-gray-900 transition-all hover:shadow-md">
                         <Crown size={20} strokeWidth={2.5} className="mb-1" />
-                        <span className="absolute bottom-1.5 bg-black text-white text-[8px] font-bold px-1.5 py-[1px] rounded-full leading-none tracking-tighter">
+                        <span className="absolute bottom-1.5 rounded-full bg-black px-1.5 py-[1px] text-[8px] leading-none font-bold tracking-tighter text-white">
                             PRO
                         </span>
                     </button>
@@ -42,30 +73,30 @@ export function AppSidebarHeader() {
             </div>
 
             {/* Profile Card - Separate container */}
-            <div className="bg-white pl-2 pr-5 py-2 rounded-full flex items-center gap-4 shadow-sm cursor-pointer hover:shadow-md transition-shadow border border-transparent hover:border-gray-100 min-w-fit h-[84px] md:h-auto">
+            <div className="flex h-[84px] min-w-fit cursor-pointer items-center gap-4 rounded-full border border-transparent bg-white py-2 pr-5 pl-2 shadow-sm transition-shadow hover:border-gray-100 hover:shadow-md md:h-auto">
                 {auth.user.avatar ? (
                     <img
                         src={auth.user.avatar}
                         alt="Profile"
-                        className="w-12 h-12 rounded-full object-cover"
+                        className="h-12 w-12 rounded-full object-cover"
                     />
                 ) : (
-                    <div className="w-12 h-12 rounded-full bg-gray-200 flex items-center justify-center text-gray-600 font-semibold">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gray-200 font-semibold text-gray-600">
                         {getInitials(auth.user.name)}
                     </div>
                 )}
-                <div className="hidden sm:block text-left">
-                    <p className="text-sm font-bold text-gray-900 leading-tight">
+                <div className="hidden text-left sm:block">
+                    <p className="text-sm leading-tight font-bold text-gray-900">
                         {auth.user.name}
                     </p>
-                    <div className="flex items-center gap-1 text-gray-500 mt-0.5">
+                    <div className="mt-0.5 flex items-center gap-1 text-gray-500">
                         <User size={12} strokeWidth={2.5} />
                         <p className="text-xs font-medium">Manager</p>
                     </div>
                 </div>
                 <button
                     onClick={handleLogout}
-                    className="ml-2 p-2 text-red-500 hover:bg-red-50 rounded-full transition-colors"
+                    className="ml-2 rounded-full p-2 text-red-500 transition-colors hover:bg-red-50"
                 >
                     <LogOut size={20} />
                 </button>
