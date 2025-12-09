@@ -9,7 +9,7 @@ import { useInitials } from '@/hooks/use-initials';
 import { logout } from '@/routes';
 import { type SharedData } from '@/types';
 import { router, usePage } from '@inertiajs/react';
-import { Bell, Crown, LogOut, Menu, Search, User } from 'lucide-react';
+import { Bell, LogOut, Menu, Search, User } from 'lucide-react';
 
 export function AppSidebarHeader() {
     const { auth } = usePage<SharedData>().props;
@@ -60,14 +60,6 @@ export function AppSidebarHeader() {
                     <button className="relative flex h-11 w-11 items-center justify-center rounded-full bg-[#F4F6F9] text-gray-500 transition-all hover:text-gray-900 hover:shadow-md">
                         <Bell size={20} />
                         <span className="absolute top-3 right-3 h-2 w-2 rounded-full border border-white bg-red-500"></span>
-                    </button>
-
-                    {/* Pro Badge Button */}
-                    <button className="group relative flex h-11 w-11 items-center justify-center rounded-full bg-[#D2F558] text-gray-900 transition-all hover:shadow-md">
-                        <Crown size={20} strokeWidth={2.5} className="mb-1" />
-                        <span className="absolute bottom-1.5 rounded-full bg-black px-1.5 py-[1px] text-[8px] leading-none font-bold tracking-tighter text-white">
-                            PRO
-                        </span>
                     </button>
                 </div>
             </div>
