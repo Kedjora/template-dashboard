@@ -85,7 +85,7 @@ export function AppSidebarHeader() {
                         {getInitials(auth.user.name)}
                     </div>
                 )}
-                <div className="hidden text-left sm:block">
+                <div className="hidden text-left xl:block">
                     <p className="text-sm leading-tight font-bold text-gray-900">
                         {auth.user.name}
                     </p>
