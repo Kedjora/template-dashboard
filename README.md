@@ -150,7 +150,7 @@ Access the application at `http://localhost:8000`
 
 ## License
 
-This project is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+This project is open-sourced software licensed under the [MIT License](LICENSE).
 
 ## Author
 
