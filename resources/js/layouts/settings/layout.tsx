@@ -1,11 +1,10 @@
 import { cn, isSameUrl, resolveUrl } from '@/lib/utils';
-import { edit as editAppearance } from '@/routes/appearance';
 import { edit } from '@/routes/profile';
 import { show } from '@/routes/two-factor';
 import { edit as editPassword } from '@/routes/user-password';
 import { type NavItem } from '@/types';
 import { Link } from '@inertiajs/react';
-import { KeyRound, Palette, ShieldCheck, User } from 'lucide-react';
+import { KeyRound, ShieldCheck, User } from 'lucide-react';
 import { type PropsWithChildren } from 'react';
 
 const sidebarNavItems: NavItem[] = [
@@ -23,11 +22,6 @@ const sidebarNavItems: NavItem[] = [
         title: 'Two-Factor Auth',
         href: show(),
         icon: ShieldCheck,
-    },
-    {
-        title: 'Appearance',
-        href: editAppearance(),
-        icon: Palette,
     },
 ];
 
