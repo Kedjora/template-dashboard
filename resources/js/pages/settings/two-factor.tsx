@@ -1,7 +1,5 @@
-import HeadingSmall from '@/components/heading-small';
 import TwoFactorRecoveryCodes from '@/components/two-factor-recovery-codes';
 import TwoFactorSetupModal from '@/components/two-factor-setup-modal';
-import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { useTwoFactorAuth } from '@/hooks/use-two-factor-auth';
 import AppLayout from '@/layouts/app-layout';
@@ -44,19 +42,27 @@ export default function TwoFactor({
         <AppLayout breadcrumbs={breadcrumbs}>
             <Head title="Two-Factor Authentication" />
             <SettingsLayout>
-                <div className="space-y-6">
-                    <HeadingSmall
-                        title="Two-Factor Authentication"
-                        description="Manage your two-factor authentication settings"
-                    />
+                <div className="space-y-8">
+                    <div>
+                        <h2 className="text-lg font-bold text-gray-800 mb-1">Two-Factor Authentication</h2>
+                        <p className="text-gray-500 text-sm mb-6">Add an extra layer of security to your account</p>
+                    </div>
+
                     {twoFactorEnabled ? (
-                        <div className="flex flex-col items-start justify-start space-y-4">
-                            <Badge variant="default">Enabled</Badge>
-                            <p className="text-muted-foreground">
-                                With two-factor authentication enabled, you will
-                                be prompted for a secure, random pin during
-                                login, which you can retrieve from the
-                                TOTP-supported application on your phone.
+                        <div className="space-y-6">
+                            <div className="flex items-center gap-3">
+                                <div className="w-10 h-10 rounded-xl bg-green-100 flex items-center justify-center">
+                                    <ShieldCheck className="w-5 h-5 text-green-600" />
+                                </div>
+                                <div>
+                                    <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-semibold bg-green-100 text-green-700">
+                                        Enabled
+                                    </span>
+                                </div>
+                            </div>
+
+                            <p className="text-gray-600">
+                                Two-factor authentication is enabled. You will be prompted for a secure code during login.
                             </p>
 
                             <TwoFactorRecoveryCodes
@@ -65,51 +71,57 @@ export default function TwoFactor({
                                 errors={errors}
                             />
 
-                            <div className="relative inline">
-                                <Form {...disable.form()}>
-                                    {({ processing }) => (
-                                        <Button
-                                            variant="destructive"
-                                            type="submit"
-                                            disabled={processing}
-                                        >
-                                            <ShieldBan /> Disable 2FA
-                                        </Button>
-                                    )}
-                                </Form>
-                            </div>
+                            <Form {...disable.form()}>
+                                {({ processing }) => (
+                                    <Button
+                                        type="submit"
+                                        disabled={processing}
+                                        className="h-11 px-6 bg-red-600 hover:bg-red-700 text-white font-semibold rounded-xl shadow-lg shadow-red-200 transition-all"
+                                    >
+                                        <ShieldBan className="mr-2" size={18} />
+                                        Disable 2FA
+                                    </Button>
+                                )}
+                            </Form>
                         </div>
                     ) : (
-                        <div className="flex flex-col items-start justify-start space-y-4">
-                            <Badge variant="destructive">Disabled</Badge>
-                            <p className="text-muted-foreground">
-                                When you enable two-factor authentication, you
-                                will be prompted for a secure pin during login.
-                                This pin can be retrieved from a TOTP-supported
-                                application on your phone.
+                        <div className="space-y-6">
+                            <div className="flex items-center gap-3">
+                                <div className="w-10 h-10 rounded-xl bg-red-100 flex items-center justify-center">
+                                    <ShieldBan className="w-5 h-5 text-red-600" />
+                                </div>
+                                <div>
+                                    <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-semibold bg-red-100 text-red-700">
+                                        Disabled
+                                    </span>
+                                </div>
+                            </div>
+
+                            <p className="text-gray-600">
+                                Enable two-factor authentication to add an extra layer of security. You'll need a TOTP app like Google Authenticator.
                             </p>
 
                             <div>
                                 {hasSetupData ? (
                                     <Button
                                         onClick={() => setShowSetupModal(true)}
+                                        className="h-11 px-6 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-xl shadow-lg shadow-blue-200 transition-all"
                                     >
-                                        <ShieldCheck />
+                                        <ShieldCheck className="mr-2" size={18} />
                                         Continue Setup
                                     </Button>
                                 ) : (
                                     <Form
                                         {...enable.form()}
-                                        onSuccess={() =>
-                                            setShowSetupModal(true)
-                                        }
+                                        onSuccess={() => setShowSetupModal(true)}
                                     >
                                         {({ processing }) => (
                                             <Button
                                                 type="submit"
                                                 disabled={processing}
+                                                className="h-11 px-6 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-xl shadow-lg shadow-blue-200 transition-all"
                                             >
-                                                <ShieldCheck />
+                                                <ShieldCheck className="mr-2" size={18} />
                                                 Enable 2FA
                                             </Button>
                                         )}

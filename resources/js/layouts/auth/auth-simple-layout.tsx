@@ -1,4 +1,4 @@
-import AppLogoIcon from '@/components/app-logo-icon';
+import AppLogo from '@/components/app-logo';
 import { home } from '@/routes';
 import { Link } from '@inertiajs/react';
 import { type PropsWithChildren } from 'react';
@@ -15,30 +15,32 @@ export default function AuthSimpleLayout({
     description,
 }: PropsWithChildren<AuthLayoutProps>) {
     return (
-        <div className="flex min-h-svh flex-col items-center justify-center gap-6 bg-background p-6 md:p-10">
-            <div className="w-full max-w-sm">
-                <div className="flex flex-col gap-8">
-                    <div className="flex flex-col items-center gap-4">
-                        <Link
-                            href={home()}
-                            className="flex flex-col items-center gap-2 font-medium"
-                        >
-                            <div className="mb-1 flex h-9 w-9 items-center justify-center rounded-md">
-                                <AppLogoIcon className="size-9 fill-current text-[var(--foreground)] dark:text-white" />
-                            </div>
-                            <span className="sr-only">{title}</span>
-                        </Link>
+        <div className="min-h-screen bg-[#F4F6F9] flex flex-col">
+            {/* Header */}
+            <header className="p-6 md:p-8">
+                <Link href={home()} className="inline-flex items-center gap-3">
+                    <AppLogo />
+                </Link>
+            </header>
 
-                        <div className="space-y-2 text-center">
-                            <h1 className="text-xl font-medium">{title}</h1>
-                            <p className="text-center text-sm text-muted-foreground">
-                                {description}
-                            </p>
+            {/* Main Content */}
+            <main className="flex-1 flex items-center justify-center px-6 pb-12">
+                <div className="w-full max-w-md">
+                    {/* Form Card */}
+                    <div className="bg-white rounded-3xl p-8 md:p-10 shadow-sm border border-gray-100">
+                        <div className="space-y-2 mb-8">
+                            <h1 className="text-2xl font-bold text-gray-900">{title}</h1>
+                            <p className="text-gray-500 text-sm">{description}</p>
                         </div>
+                        {children}
                     </div>
-                    {children}
                 </div>
-            </div>
+            </main>
+
+            {/* Footer */}
+            <footer className="p-6 text-center">
+                <p className="text-gray-400 text-sm">© 2025 Kedjora. All rights reserved.</p>
+            </footer>
         </div>
     );
 }

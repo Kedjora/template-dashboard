@@ -10,6 +10,17 @@ A modern dashboard application built with Laravel 12 and React, featuring a clea
 - **Build Tool:** Vite
 - **Authentication:** Laravel Fortify
 
+## Screenshots
+
+### Dashboard
+![Dashboard](images/dashboard.png)
+
+### Login
+![Login](images/login.png)
+
+### Profile Settings
+![Profile](images/profile.png)
+
 ## Features
 
 - 🔐 Authentication (Login, Register, Forgot Password)
