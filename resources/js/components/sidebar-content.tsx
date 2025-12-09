@@ -71,7 +71,7 @@ export function SidebarContent({
     isMobile?: boolean;
 }) {
     const { url } = usePage();
-    const [isManageUserOpen, setIsManageUserOpen] = useState(true);
+    const [isManageUserOpen, setIsManageUserOpen] = useState(false);
 
     const isActive = (path: string) => url === path || url.startsWith(path);
 
@@ -174,7 +174,7 @@ export function SidebarContent({
                                     setIsManageUserOpen(!isManageUserOpen)
                                 }
                                 title={isCollapsed ? 'Manage User' : ''}
-                                className={`flex w-full items-center justify-between rounded-xl py-3 font-medium text-gray-700 transition-colors hover:bg-gray-50 ${isCollapsed ? 'justify-center px-2' : 'px-4'}`}
+                                className={`flex w-full items-center justify-between rounded-xl py-3 font-medium text-gray-500 transition-colors hover:bg-gray-50 ${isCollapsed ? 'justify-center px-2' : 'px-4'}`}
                             >
                                 <div className="flex items-center gap-3">
                                     <UserCheck size={20} />
