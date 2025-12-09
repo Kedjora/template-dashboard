@@ -12,13 +12,20 @@ A modern dashboard application built with Laravel 12 and React, featuring a clea
 
 ## Screenshots
 
-### Dashboard
-![Dashboard](images/dashboard.png)
-
 ### Login
+
 ![Login](images/login.png)
 
+### Full Dashboard
+
+![Dashboard](images/dashboard1.png)
+
+### Hide Sidebar Dashboard
+
+![Dashboard](images/dashboard2.png)
+
 ### Profile Settings
+
 ![Profile](images/profile.png)
 
 ## Features
@@ -39,48 +46,54 @@ A modern dashboard application built with Laravel 12 and React, featuring a clea
 ## Installation
 
 1. **Clone the repository**
-   ```bash
-   git clone https://github.com/Kedjora/template-dashboard.git
-   cd template-dashboard
-   ```
+
+    ```bash
+    git clone https://github.com/Kedjora/template-dashboard.git
+    cd template-dashboard
+    ```
 
 2. **Install PHP dependencies**
-   ```bash
-   composer install
-   ```
+
+    ```bash
+    composer install
+    ```
 
 3. **Install Node.js dependencies**
-   ```bash
-   npm install
-   ```
+
+    ```bash
+    npm install
+    ```
 
 4. **Environment setup**
-   ```bash
-   cp .env.example .env
-   php artisan key:generate
-   ```
+
+    ```bash
+    cp .env.example .env
+    php artisan key:generate
+    ```
 
 5. **Configure database**
-   
-   Update `.env` file with your database credentials:
-   ```env
-   DB_CONNECTION=mysql
-   DB_HOST=127.0.0.1
-   DB_PORT=3306
-   DB_DATABASE=your_database
-   DB_USERNAME=your_username
-   DB_PASSWORD=your_password
-   ```
+
+    Update `.env` file with your database credentials:
+
+    ```env
+    DB_CONNECTION=mysql
+    DB_HOST=127.0.0.1
+    DB_PORT=3306
+    DB_DATABASE=your_database
+    DB_USERNAME=your_username
+    DB_PASSWORD=your_password
+    ```
 
 6. **Run migrations**
-   ```bash
-   php artisan migrate
-   ```
+
+    ```bash
+    php artisan migrate
+    ```
 
 7. **Build assets**
-   ```bash
-   npm run build
-   ```
+    ```bash
+    npm run build
+    ```
 
 ## Development
 
@@ -98,13 +111,13 @@ Access the application at `http://localhost:8000`
 
 ## Scripts
 
-| Command | Description |
-|---------|-------------|
-| `npm run dev` | Start Vite development server |
-| `npm run build` | Build assets for production |
-| `npm run lint` | Run ESLint |
-| `npm run format` | Format code with Prettier |
-| `npm run types` | TypeScript type checking |
+| Command          | Description                   |
+| ---------------- | ----------------------------- |
+| `npm run dev`    | Start Vite development server |
+| `npm run build`  | Build assets for production   |
+| `npm run lint`   | Run ESLint                    |
+| `npm run format` | Format code with Prettier     |
+| `npm run types`  | TypeScript type checking      |
 
 ## Project Structure
 
